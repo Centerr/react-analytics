@@ -21,8 +21,11 @@ tracker1.trackScreenView('Home');
 
 export default class reactAnalyticsDemo extends Component {
 
-    _onPressButton() {
-        tracker1.trackEvent('demo', 'trackevent');
+    _onPressButton1() {
+        tracker1.trackEvent('demo', 'event1');
+    }
+    _onPressButton2() {
+        tracker1.trackEvent('demo', 'event2');
     }
 
     render() {
@@ -30,25 +33,14 @@ export default class reactAnalyticsDemo extends Component {
             <View style={styles.container}>
               <View style={styles.buttonContainer}>
                 <Button
-                    onPress={this._onPressButton}
-                    title="Press Me"
+                    onPress={this._onPressButton1}
+                    title="Event 1"
                 />
               </View>
               <View style={styles.buttonContainer}>
                 <Button
-                    onPress={this._onPressButton}
-                    title="Press Me"
-                    color="#841584"
-                />
-              </View>
-              <View style={styles.alternativeLayoutButtonContainer}>
-                <Button
-                    onPress={this._onPressButton}
-                    title="This looks great!"
-                />
-                <Button
-                    onPress={this._onPressButton}
-                    title="OK!"
+                    onPress={this._onPressButton2}
+                    title="Event 2"
                     color="#841584"
                 />
               </View>
