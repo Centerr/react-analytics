@@ -6,48 +6,62 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+    AppRegistry, Button,
+    StyleSheet,
+    View
 } from 'react-native';
+import {
+    GoogleAnalyticsTracker
+} from 'react-native-google-analytics-bridge';
+
+let tracker1 = new GoogleAnalyticsTracker('UA-103056772-1');
+
+tracker1.trackScreenView('Home');
+
 
 export default class reactAnalyticsDemo extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
+
+    _onPressButton1() {
+        tracker1.trackEvent('demo', 'event1');
+    }
+    _onPressButton2() {
+        tracker1.trackEvent('demo', 'event2');
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+              <View style={styles.buttonContainer}>
+                <Button
+                    onPress={this._onPressButton1}
+                    title="Event 1"
+                />
+              </View>
+              <View style={styles.buttonContainer}>
+                <Button
+                    onPress={this._onPressButton2}
+                    title="Event 2"
+                    color="#841584"
+                />
+              </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    buttonContainer: {
+        margin: 20
+    },
+    alternativeLayoutButtonContainer: {
+        margin: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    }
+})
 
 AppRegistry.registerComponent('reactAnalyticsDemo', () => reactAnalyticsDemo);
